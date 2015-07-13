@@ -10,11 +10,11 @@ Lookup the target for a grunt task
 
 ## Summary
 
-Pass in grunt and the task you're intested in to get back the currently invoked target (if any)
+Pass in grunt and the task you're intested in to get back the currently invoked target (if any).
 
 ## Usage
 
-You can use this library in a Gruntfile (or alternatively, in a task itself) to do dynamic stuff based on the task. This function returns a string or array of strings that correspond to the targets specified for a given task.
+You can use this library in a Gruntfile (or alternatively, in a task itself) to do dynamic stuff based on the task. If the task you pass in was not invoked in the current build chain, this function returns null. If the task you pass in was invoked once, it returns the string name of the target it was invoked with (which _could_ be undefined if you invoke a multitask without a target name). If the task you pass in was invoked more than once, it returns an array of string targets.
 
 ```js
 var getTarget = require('get-grunt-target');
