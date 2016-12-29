@@ -1,5 +1,3 @@
-expect = require('indeed').expect
-
 describe 'get-grunt-target', ->
   Given -> @getTarget = require '../lib/get-grunt-target'
 
@@ -8,25 +6,25 @@ describe 'get-grunt-target', ->
       cli:
         tasks: ['foo:bar']
     When -> @target = @getTarget @grunt, 'blah'
-    Then -> expect(@target).to.be.null()
+    Then -> (@target is null).should.be.true()
 
   context 'found', ->
     Given -> @grunt =
       cli:
         tasks: ['foo:bar']
     When -> @target = @getTarget @grunt, 'foo'
-    Then -> expect(@target).to.equal 'bar'
+    Then -> @target.should.equal 'bar'
 
   context 'multiple targets found', ->
     Given -> @grunt =
       cli:
         tasks: ['foo:bar', 'foo:baz']
     When -> @targets = @getTarget @grunt, 'foo'
-    Then -> expect(@targets).to.deep.equal ['bar', 'baz']
+    Then -> @targets.should.eql ['bar', 'baz']
 
   context 'multiple targets with index', ->
     Given -> @grunt =
       cli:
         tasks: ['foo:bar', 'foo:baz']
     When -> @targets = @getTarget @grunt, 'foo'
-    Then -> expect(@targets).to.deep.equal ['bar', 'baz']
+    Then -> @targets.should.eql ['bar', 'baz']
