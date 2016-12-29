@@ -1,6 +1,6 @@
 {
   "name": "get-grunt-target",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lookup the target for a grunt task",
   "main": "lib/get-grunt-target.js",
   "scripts": {
